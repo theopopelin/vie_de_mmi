@@ -1,0 +1,228 @@
+#app {
+	height: 100%;
+	background-image: url(fond_jeu_nobande.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 0;
+	padding: 0;
+}
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.btn-retour-accueil {
+	padding: 0 20px 0 20px;
+	height: 70px;
+	background-color: #ff73de;
+	border-bottom-right-radius: 20px;
+}
+.accueil-lien {
+	text-decoration: none;
+	padding-left: 5px;
+	font-family: 'Myriad Pro Bold' !important;
+	font-size: 20px;
+}
+.accueil-lien:link, .accueil-lien:visited {
+	color: black;
+}
+
+/************* TOP BAR *************/
+
+.profil-stl {
+	color: #fdd432;
+	text-align: center;
+	font-family: 'Komikazoom' !important;
+	font-size: 40px;
+}
+
+.classement-stl {
+	color: white;
+	text-align: center;
+	font-family: 'Komikazoom' !important;
+	font-size: 40px;
+}
+
+/*************** FORMULAIRE ***************/
+.card-form {
+	border-radius: 40px !important;
+}
+
+.theme--light.v-label {
+	color: white !important;
+}
+
+.theme--light.v-input, .theme--light.v-input input, .theme--light.v-input textarea {
+    color: white !important;
+}
+
+.form-style {
+	background-color: #ff73de;
+}
+.oubli-mdp:link, .oubli-mdp:visited  {
+	color: white;
+	font-size: 10px;
+	margin-left: 80%;
+}
+.button-big {
+	background: linear-gradient(#852d8e, #4d3690);
+	margin-bottom: -25px;
+}
+.txt-btn {
+	font-size: 10px !important;
+}
+
+/* classement */
+
+.classement-bloc {
+	background-color: #fdd432;
+	border-top-right-radius: 30px;
+}
+.rank1-player, .rank1-player-money {
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #fdd432;
+	font-size: 26px;
+	font-weight: 700;
+	font-family: 'Myriad Pro Regular';
+}
+.rank2-player, .rank2-player-money {
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #e5e5e5;
+	font-size: 23px;
+	font-weight: 700;
+	font-family: 'Myriad Pro Regular';
+}
+.rank3-player, .rank3-player-money {
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #c7956b;
+	font-size: 20px;
+	font-weight: 700;
+	font-family: 'Myriad Pro Regular';
+}
+.normal-rank-player, .normal-rank-player-money {
+	padding-left: 5px;
+	padding-right: 5px;
+	color: white;
+	font-size: 18px;
+	font-weight: 500;
+	font-family: 'Myriad Pro Regular';
+}
+/*************** INDICATION ***************/
+.ton-classement {
+	font-size: 25px ;
+	font-family: 'Barlow' !important;
+	color: white;
+	font-weight: 500;
+}
+.bien-joue {
+	font-size: 40px ;
+	font-family: 'Barlow' !important;
+	color: #00c4ff;
+	font-weight: 700;
+}
+
+/*************** JOUER ! ***************/
+
+.btn-jouer {
+	padding: 0 20px 0 20px;
+	height: 70px;
+	background-color: #b6246f;
+	border-radius: 20px;
+}
+.jouer-lien {
+	text-decoration: none;
+	color: #111933;
+	padding-right: 10px;
+	font-size: 35px;
+	font-family: 'Komikazoom' !important;
+}
+
+.jouer-lien:link, .jouer-lien:visited {
+	color: #111933;
+}
+
+.fixed-bottom-left {
+	display: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+/******************* FONT ********************/
+
+@font-face {
+	font-family: "Komikazoom";
+	src: url("./fonts/KAMIKZOM.ttf") format("ttf"),
+   }
+@font-face {
+	font-family: "Barlow";
+	src: url("./fonts/Barlow-Regular.otf") format("otf"),
+}
+@font-face {
+	font-family: 'Myriad Pro Regular';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Regular'), url('./fonts/MYRIADPRO-REGULAR.woff') format('woff');
+}
+@font-face {
+	font-family: 'Myriad Pro Condensed';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Condensed'), url('./fonts/MYRIADPRO-COND.woff') format('woff');
+}
+@font-face {
+	font-family: 'Myriad Pro Condensed Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Condensed Italic'), url('./fonts/MYRIADPRO-CONDIT.woff') format('woff');
+}
+@font-face {
+	font-family: 'Myriad Pro Light';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Light'), url('./fonts/MyriadPro-Light.woff') format('woff');
+}
+@font-face {
+	font-family: 'Myriad Pro Semibold';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Semibold'), url('./fonts/MYRIADPRO-SEMIBOLD.woff') format('woff');
+}
+@font-face {
+	font-family: 'Myriad Pro Semibold Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Semibold Italic'), url('./fonts/MYRIADPRO-SEMIBOLDIT.woff') format('woff');
+}
+@font-face {
+	font-family: 'Myriad Pro Bold Condensed';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Bold Condensed'), url('./fonts/MYRIADPRO-BOLDCOND.woff') format('woff');
+}
+@font-face {
+	font-family: 'Myriad Pro Bold';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Bold'), url('./fonts/MYRIADPRO-BOLD.woff') format('woff');
+}
+@font-face {
+	font-family: 'Myriad Pro Bold Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Bold Italic'), url('./fonts/MYRIADPRO-BOLDIT.woff') format('woff');
+}
+@font-face {
+	font-family: 'Myriad Pro Bold Condensed Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Myriad Pro Bold Condensed Italic'), url('./fonts/MYRIADPRO-BOLDCONDIT.woff') format('woff');
+}
+.font-barlow {
+	font-family: 'Barlow' !important;
+}
+.font-komikazoom {
+	font-family: 'Komikazoom' !important;
+}

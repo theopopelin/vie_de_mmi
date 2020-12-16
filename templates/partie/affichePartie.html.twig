@@ -1,0 +1,237 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Amusez-vous en jouant à Vie de MMI !
+{% endblock %}
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jeu.css') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}"/>
+{% endblock %}
+{% block body %}
+
+    <div id="app">
+        <v-app>
+            <v-content pa-0 ma-0>
+
+                <!-- TOP BLOC -->
+                <v-row no-gutters justify="center"> <!-- RETOUR ACCUEIL -->
+                    <v-col cols="1">
+                        <v-row no-gutters align="center" justify="center" class="btn-retour-accueil">
+                            <img height="15px" src="{{ asset('images/fleche.svg')}}" alt="Pictogramme flèche, pour revenir à l'accueil">
+                            <a href="{{ path('app_lobby') }}" class="accueil-lien">Accueil</a>
+                        </v-row>
+                    </v-col>
+
+                    <v-col cols="2 offset-4"> <!-- ARGENT -->
+                        <v-row no-gutters justify="center" class="argent">
+                            <v-col cols="12">
+                                <div class="bloc-centered">
+
+                                    <script>
+                                        $(document).ready(function(){
+                                        })
+                                        setInterval(function(){
+
+                                            $.get('{{ path('affiche_argent_joueur', { 'partie': partie }) }}').done(function(mesdonnestab){
+                                                $('#afficheargent').html(mesdonnestab);
+
+                                            });
+
+                                        },1500);
+                                    </script>
+
+                                    <div id="afficheargent">
+
+                                    </div>
+
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-col>
+
+                    <v-col cols="4 offset-1"> <!-- BOITES -->
+                        <a class="hvr-grow" href=""><img height="90px" src="{{ asset('images/boite.svg')}}" alt="Boîte"></a>
+                        <a class="hvr-grow" href=""><img height="90px" src="{{ asset('images/boite.svg')}}" alt="Boîte"></a>
+                        <a class="hvr-grow" href=""><img height="90px" src="{{ asset('images/boite.svg')}}" alt="Boîte"></a>
+                        <a class="hvr-grow" href=""><img height="90px" src="{{ asset('images/boite.svg')}}" alt="Boîte"></a>
+                        <a class="hvr-grow" href=""><img height="90px" src="{{ asset('images/boite.svg')}}" alt="Boîte"></a>
+                        <a class="hvr-grow" href=""><img height="90px" src="{{ asset('images/boite.svg')}}" alt="Boîte"></a>
+                    </v-col>
+                </v-row>
+                <!-- /TOP BLOC -->
+
+                <div class="row">
+                    <div>
+                        <div id="plateau" class="row">
+                            <!--partie qui sera actualisée toutes les 2 secondes par exemple
+                            Pour ne pas dupliquer le code, j'ai fait une méthode qui se charge d'afficher le plateau, cette
+                            méthode je l'appelle ici pour le premier affichage, et ensuite dans la boucle pour la mise à jour.
+                            -->
+                            {{ render(path('affiche_plateau', {partie: partie.id})) }}
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- BOTTOM BLOC -->
+                <div class="fixed-bottom">
+
+                    <script>
+                        $(document).ready(function(){
+                        })
+                        setInterval(function(){
+
+                            $.get('{{ path('affiche_tableau_partie', { 'partie': partie }) }}').done(function(mesdonnestab){
+                                $('#affichetableau').html(mesdonnestab);
+
+                            });
+
+                        },1500);
+                    </script>
+
+                    <v-row no-gutters> <!-- CLASSEMENT -->
+
+                        <v-col cols="4" class="classement-bloc">
+                            <div id="affichetableau" style="padding: 25px;"> </div>
+
+                        </v-col>
+
+                        <v-col cols="3 offset-1"> <!-- ANIMATION -->
+                            <div id="divanimations" ></div>
+                        </v-col>
+
+                        <v-col cols="3 offset-1"> <!-- CHAT -->
+                            <div class="animation" style="height: 300px;">
+
+                                <script>
+                                    $(document).ready(function(){
+                                    })
+                                    setInterval(function(){
+
+                                        $.get('{{ path('affiche_tchat_partie', { 'partie': partie }) }}').done(function(mesdonnes){
+                                            $('#affiche').html(mesdonnes);
+
+                                        });
+
+                                    },1500);
+                                </script>
+
+                                <form action="" method="POST">
+
+                                    <div>
+                                        <input type="text" name="message" id="message" style="border: 1px solid black;">
+
+                                        <button type="submit" style="margin-left: 20px;">Envoyer</button>
+                                    </div>
+
+                                </form>
+                                <br>
+                                <div id="affiche" style="width: auto;">
+
+                                </div></div>
+                        </v-col>
+                    </v-row>
+
+                </div>
+                <!-- /BOTTOM BLOC -->
+
+
+
+
+            </v-content>
+        </v-app>
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+        })
+    </script>
+
+    <script>
+      let montour = null
+
+      $(document).ready(function () {
+        //toutes les 3 secondes
+        setInterval(whoPlay, 3000)
+
+      })
+
+      function whoPlay () {
+          //cette fonction permet de scruter toutes les 3 secondes (a ajuster), l'état de la partie
+          // si ce n'est pas à moi de jouer, je mets le jeu en pause de mon coté, j'indique le joueur en train de jouer.
+          // si c'est à mon tour, je mets à jour le plateau, et j'enleve la pause
+          $.ajax({
+              url: "{{ path('update_game', {partie: partie.id}) }}",
+              success: function (data) {
+                  console.log(data.monTour + ' ' + montour)
+                  if (data.monTour !== montour) {
+                      console.log('diff on refresh')
+                      //il y a des données dans data, on pourrait mettre à jour en javascript la partie joueur éventuellement...
+                      if (data.monTour == true) {
+                          $('#my-game-pause').hide()
+                          $('#plateau-actions').show()
+                          montour = true
+
+                      } else {
+                          $('#plateau').empty().load("{{ path('affiche_plateau',{partie:partie.id}) }}", function () {
+                              $('#my-game-pause').show()
+                              $('#plateau-actions').hide()
+                              montour = false
+                          })
+                      }
+                  }
+              }
+          })
+      }
+
+
+      $(document).on('click', '#fin-du-tour', function () {
+        $.ajax({
+          url: "{{ path('fin_de_tour', {partie: partie.id}) }}",
+          success: function (data) {
+            //il y a des données dans data, on pourrait mettre à jour en javascript la partie joueur éventuellement...
+            $('#my-game-pause').show()
+            $('#plateau-actions').hide()
+          }
+        })
+      })
+
+      $(document).on('click', '#lance_de', function () {
+          $.ajax({
+              url: "{{ path('lance_de', {partie: partie.id}) }}",
+              success: function (data) {
+                  console.log(data);
+                  $('#plateau').empty().load("{{ path('affiche_plateau',{partie:partie.id}) }}", function () {
+                      let varlink = '<div class="col-sm-2"><img style="width: 384px; height: 216px;"  src="http://89.234.183.127/gifsmmi/'+data.animation+'" ></div>'
+                      $('#divanimations').html(varlink);
+                      $.ajax({
+                          url: "{{ path('fin_de_tour', {partie: partie.id}) }}",
+                          success: function (data) {
+                              //il y a des données dans data, on pourrait mettre à jour en javascript la partie joueur éventuellement...
+                              $('#my-game-pause').show()
+                              $('#plateau-actions').hide()
+                          }
+                      })
+
+                  })
+              }
+          })
+      })
+    </script>
+{% endblock %}
+

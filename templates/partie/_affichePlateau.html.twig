@@ -1,0 +1,36 @@
+<div style="margin-left: 100px;" id="my-game-play">
+
+    <div class="row" id="plateau-actions" style="color: white; margin-left: 7vw;">
+        <div>
+            <button class="btn btn-block btn-info" id="lance_de" style="background-color: purple; color: white; padding: 5px; margin: 5px;">Lancé Dé</button>
+            <button class="btn btn-block btn-danger" id="fin-du-tour" style="background-color: purple; color: white; padding: 5px; margin: 5px;">Fin du tour</button>
+        </div>
+    </div>
+    <div id="my-game-pause" style="color: white; margin-left: 7vw;">
+        En attente des autres joueurs...
+    </div>
+
+  <div class="row" id="plateau-cases">
+
+    <div style="display: flex; width: 500vw; flex-wrap: wrap; color: white;">
+      {% for case in cases %}
+        <div style="margin: 20px;">
+          <p style="text-align: center;">{{ case.effet }}</p><img src="{{ asset(case.image) }}" style="height: 150px; width: 150px;">
+          <p>{% if positions[case.position] is defined %}
+              {% for joueur in positions[case.position] %}
+                <span class="pion {{ joueur.pion }}">{{ joueur.joueur.name }}</span><br>
+              {% endfor %}
+            {% endif %}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+

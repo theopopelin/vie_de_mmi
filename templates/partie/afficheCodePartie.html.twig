@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Amusez-vous en jouant à Vie de MMI !
+{% endblock %}
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jeu.css') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}"/>
+{% endblock %}
+{% block body %}
+
+    <div id="app">
+        <v-app>
+            <v-content pa-0 ma-0>
+
+                <!-- TOP BLOC -->
+                <v-row no-gutters justify="center"> <!-- RETOUR ACCUEIL -->
+                    <v-col cols="1">
+                        <v-row no-gutters align="center" justify="center" class="btn-retour-accueil">
+                            <img height="15px" src="{{ asset('images/fleche.svg')}}" alt="Pictogramme flèche, pour revenir à l'accueil">
+                            <a href="{{ path('app_lobby') }}" class="accueil-lien">Accueil</a>
+                        </v-row>
+                    </v-col>
+
+                    <v-col cols="2 offset-4"> <!-- ARGENT -->
+                        <v-row no-gutters justify="center">
+                            <v-col cols="12" style="color: white;">
+                                <h1 style="color: white;">Attente de joueur</h1>
+                                Code partie : {{ partie.id }}
+
+                            </v-col>
+                        </v-row>
+                    </v-col>
+
+                    <v-col cols="4 offset-1"> <!-- BOITES -->
+
+                    </v-col>
+                </v-row>
+                <!-- /TOP BLOC -->
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div id="plateau" class="row" style="color: white;">
+                            <v-row>
+                                <a style="margin-left: 8vw; margin-top: 20vh;" href="{{ path('commencer_partie', { 'partie': partie }) }}">Commencer la partie</a>
+                            </v-row>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- BOTTOM BLOC -->
+                <div class="fixed-bottom">
+
+                    <v-row no-gutters> <!-- CLASSEMENT -->
+                        <v-col cols="4" class="classement-bloc">
+                            <v-row no-gutters style="padding-top: 20px;">
+                                <v-col cols="1 offset-1" >
+
+                                </v-col>
+
+                                <v-col cols="3 offset-1">
+                                    <p>Joueurs inscrits : </p>
+                                    {% for jouer in partie.jouers %}
+                                        <span class="rank1-player">{{ jouer.joueur.name }}</span></br>
+                                    {% endfor %}
+                                </v-col>
+
+
+
+                                <v-col cols="3 offset-1">
+
+                                </v-col>
+
+
+                            </v-row>
+
+                        </v-col>
+
+                        <v-col cols="3 offset-1"> <!-- ANIMATION -->
+                            <div id="divanimations" ></div>
+                        </v-col>
+
+                        <v-col cols="3 offset-1"> <!-- CHAT -->
+                            <div class="animation" style="height: 300px;">
+
+                                <script>
+                                    $(document).ready(function(){
+                                    })
+                                    setInterval(function(){
+
+                                        $.get('{{ path('affiche_tchat_partie', { 'partie': partie }) }}').done(function(mesdonnes){
+                                            $('#affiche').html(mesdonnes);
+
+                                        });
+
+                                    },1500);
+                                </script>
+
+                                <form action="" method="POST">
+
+                                    <div>
+                                        <input type="text" name="message" id="message" style="border: 1px solid black;">
+
+                                        <button type="submit" style="margin-left: 20px;">Envoyer</button>
+                                    </div>
+
+                                </form>
+                                <br>
+                                <div id="affiche" style="width: auto;">
+
+                                </div></div>
+                        </v-col>
+                    </v-row>
+
+                </div>
+                <!-- /BOTTOM BLOC -->
+
+
+
+
+            </v-content>
+        </v-app>
+    </div>
+
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+        })
+    </script>
+{% endblock %}
+
+

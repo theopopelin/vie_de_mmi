@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+
+
+{% for tchat in tchats %}
+
+    {{ tchat.user.name }} : {{ tchat.message }} <br>
+    
+    {% endfor %}
+
+  <!--  <form action="" method="POST">
+
+        <div>
+            <input type="text" name="message" id="message">
+
+            <button type="submit">Envoyer</button>
+        </div>
+
+    </form>-->
+{% endblock %}
+

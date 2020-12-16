@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connectez-vous{% endblock %}
+
+{% block stylesheets %}
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/connexion.css') }}">
+<link rel="icon" href="{{ asset('favicon.ico') }}"/>
+{% endblock %}
+
+{% block body %}
+
+
+
+<div id="app">
+    <v-app>
+        <v-content pa-0 ma-0>
+
+            <!-- TOP BLOC -->
+            <v-row no-gutters> <!-- RETOUR ACCUEIL -->
+                <v-col cols="1">
+                    <v-row no-gutters align="center" justify="center" class="btn-retour-accueil">
+                        <img height="15px" src="{{ asset('images/fleche.svg') }}" alt="Pictogramme flèche, pour revenir à l'accueil">
+                        <a href="{{ path('app_lobby') }}" class="accueil-lien">Accueil</a>
+                    </v-row>
+                </v-col>
+            </v-row>
+            <!-- /TOP BLOC -->
+
+            <v-row no-gutters justify="center">
+                <v-col cols="6">
+                    <p class="connexion-stl">CONNEXION</p>
+                    <p class="connexion-sous-stl">Ravi de te revoir ! Saisis tes identifiants pour te connecter</p>
+                </v-col>
+            </v-row>
+
+            <!-- FORMULAIRE -->
+            <v-row justify="center">
+                <v-col cols="5">
+                    <v-card color="#13064b" class="pa-12 card-form">
+
+                        <v-form method="post">
+
+                            <v-text-field
+                                    label="Adresse mail :"
+                                    value="{{ last_username }}"
+                                    required
+                                    name="email"
+                                    id="inputEmail"
+                                    class="txt-field"
+                            ></v-text-field>
+
+                            <v-text-field
+                                    label="Mot de passe :"
+                                    type="password"
+                                    required
+                                    name="password"
+                                    id="inputPassword"
+                                    class="txt-field"
+                            ></v-text-field>
+
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}">
+                            </input>
+
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+
+                            {% if app.user %}
+                                <div class="mb-3" style="color: white;">
+                                   Vous êtes connecté en tant que {{ app.user.username }} <a href="{{ path('app_logout') }}">Déconnexion</a>
+                                </div>
+                            {% endif %}
+
+                            <a href="{{ path('app_register') }}" class="oubli-mdp">S'inscrire</a>
+
+                            <div class="text-center">
+                                <v-btn type="submit" rounded color="#b6246f" dark x-large >
+                                    <span  class="jouer-lien">JOUER !</span>
+                                    <img height="30px" src="{{ asset('images/fleche-reverse.svg') }}" alt="Pictogramme flèche, pour commencer à jouer après s'être inscrit">
+                                </v-btn>
+                            </div>
+
+                        </v-form>
+
+                    </v-card>
+
+                </v-col>
+            </v-row>
+            <!-- /FORMULAIRE -->
+
+
+
+        </v-content>
+    </v-app>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+    })
+</script>
+
+{% endblock %}

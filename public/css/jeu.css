@@ -1,0 +1,187 @@
+#app {
+    height: 100%;
+    background-image: url(fond_jeu.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.btn-retour-accueil {
+    padding: 0 20px 0 20px;
+    height: 70px;
+    background-color: #ff73de;
+    border-bottom-right-radius: 20px;
+}
+.accueil-lien {
+    text-decoration: none;
+    padding-left: 5px;
+    font-family: 'Myriad Pro Bold' !important;
+    font-size: 20px;
+}
+
+.accueil-lien:link, .accueil-lien:visited {
+    color: black;
+}
+
+.text-centered {
+    text-align: center;
+}
+.bloc-centered {
+    padding: 5px 0 5px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.fixed-bottom {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+/* argent */
+
+.montant-argent {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.argent {
+    background-color: #fdd432;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+/* classement */
+
+.classement-bloc {
+    background-color: #fdd432;
+    border-top-right-radius: 30px;
+}
+.rank1-player {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Myriad Pro Regular' !important;
+}
+.no-rank1-player {
+    color: #a86d40;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Myriad Pro Regular' !important;
+}
+
+/*************** animation ***************/
+
+.animation {
+    background-color: grey;
+}
+
+
+/*************** chat ***************/
+
+.animation {
+    background-color: grey;
+    border-top-left-radius: 30px;
+    padding: 20px;
+}
+
+/* Grow */
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+/******************* FONT ********************/
+
+@font-face {
+    font-family: "Komikazoom" !important;
+    src: url("../fonts/KAMIKZOM.ttf") format("ttf");
+}
+@font-face {
+    font-family: "Barlow" !important;
+    src: url("../fonts/Barlow-Regular.otf") format("otf");
+}
+@font-face {
+    font-family: 'Myriad Pro Regular' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Regular'), url('../fonts/MYRIADPRO-REGULAR.woff') format('woff');
+}
+@font-face {
+    font-family: 'Myriad Pro Condensed' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Condensed'), url('../fonts/MYRIADPRO-COND.woff') format('woff');
+}
+@font-face {
+    font-family: 'Myriad Pro Condensed Italic' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Condensed Italic'), url('../fonts/MYRIADPRO-CONDIT.woff') format('woff');
+}
+@font-face {
+    font-family: 'Myriad Pro Light' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Light'), url('../fonts/MyriadPro-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'Myriad Pro Semibold' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Semibold'), url('../fonts/MYRIADPRO-SEMIBOLD.woff') format('woff');
+}
+@font-face {
+    font-family: 'Myriad Pro Semibold Italic' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Semibold Italic'), url('../fonts/MYRIADPRO-SEMIBOLDIT.woff') format('woff');
+}
+@font-face {
+    font-family: 'Myriad Pro Bold Condensed' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Bold Condensed'), url('../fonts/MYRIADPRO-BOLDCOND.woff') format('woff');
+}
+@font-face {
+    font-family: 'Myriad Pro Bold' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Bold'), url('../fonts/MYRIADPRO-BOLD.woff') format('woff');
+}
+@font-face {
+    font-family: 'Myriad Pro Bold Italic' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Bold Italic'), url('../fonts/MYRIADPRO-BOLDIT.woff') format('woff');
+}
+@font-face {
+    font-family: 'Myriad Pro Bold Condensed Italic' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Bold Condensed Italic'), url('../fonts/MYRIADPRO-BOLDCONDIT.woff') format('woff');
+}
+.font-barlow {
+    font-family: 'Barlow' !important;
+}
+.font-komikazoom {
+    font-family: 'Komikazoom' !important;
+}
+
+font-family: 'Myriad Pro Semibold Italic' !important;

@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Profil
+{% endblock %}
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/profil.css') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}"/>
+    <meta charset="UTF-8">
+{% endblock %}
+{% block body %}
+<body>
+<div id="app">
+    <v-app>
+        <v-content pa-0 ma-0>
+
+            <!-- TOP BLOC -->
+            <v-row no-gutters> <!-- RETOUR ACCUEIL -->
+                <v-col cols="1">
+                    <v-row no-gutters align="center" justify="center" class="btn-retour-accueil">
+                        <img height="15px" src="{{ asset('images/fleche.svg') }}" alt="Pictogramme flèche, pour revenir à l'accueil">
+                        <a href="{{ path('app_lobby') }}" class="accueil-lien">Accueil</a>
+                    </v-row>
+                </v-col>
+            </v-row>
+            <!-- /TOP BLOC -->
+
+            <v-row no-gutters align="center" justify="center">
+                <!-- BLOC PROFIL -->
+                <v-col cols="3">
+                    <p class="profil-stl" >Profil : {{ app.user.name }}</p>
+                    <p class="profil-stl">Changer de pseudo</p>
+                    <v-row justify="center">
+                        <v-col cols="12">
+                            <v-card color="#13064b" class="pa-12 pb-0 card-form">
+                                <v-form method="post">
+                                    <v-text-field
+                                            label="Nouveau Pseudo :"
+                                            required
+                                            name="pseudo"
+                                            id="inputPseudo"
+                                            class="txt-field"
+                                    ></v-text-field>
+                                    <input type="hidden" name="_csrf_token"
+                                           value="{{ csrf_token('authenticate') }}">
+                                    </input>
+
+                                <v-btn type="submit" height="50px" class="button-big white--text" rounded>
+
+                                    <v-row no-gutters justify="center" align="center">
+                                        <img height="12px" src="{{ asset('images/valid.svg') }}" alt="Pictogramme pour valider les changements">
+                                        <span class="txt-btn">Sauvegarder</span>
+                                    </v-row>
+                                </v-btn>
+                                </v-form>
+                            </v-card>
+                        </v-col>
+
+                    </v-row>
+                    <p style="margin-top: 7vh; font-size: 25px;" class="bien-joue">Rependre une partie :</p>
+                    <div>
+                        {% for jouer in jouers %}
+                            <p class="ton-classement"><a href="{{ path('affiche_partie', { 'partie': jouer.partie }) }}">Partie numéro {{ jouer.partie }}</a></p>
+                        {% endfor %}
+                    </div>
+                </v-col>
+                <!-- /BLOC PROFIL -->
+
+                <!-- BLOC CLASSEMENT -->
+                <v-col cols="4 offset-1">
+                    <v-row no-gutters justify="center" align="center">
+                        <v-col cols="12">
+                            <p class="classement-stl">CLASSEMENT</p>
+                            <v-card color="#13064b" class="pa-1 card-form">
+                                <v-row no-gutters justify="center" align="center">
+                                    <v-col cols="2 offset-1">
+                                        <span class="rank1-player">#1</span></br>
+                                        <span class="rank2-player">#2</span></br>
+                                        <span class="rank3-player">#3</span></br>
+                                        <span class="normal-rank-player">#4</span></br>
+                                        <span class="normal-rank-player">#5</span></br>
+                                        <span class="normal-rank-player">#6</span></br>
+                                        <span class="normal-rank-player">#7</span></br>
+
+                                        {% if fond == true %}
+                                            <span class="normal-rank-player">Toi</span>
+                                        {% endif %}
+
+                                    </v-col>
+                                    <v-col cols="4 offset-1">
+                                        <span class="rank1-player">{{ classement[0].name }}</span></br>
+                                        <span class="rank2-player">{{ classement[1].name }}</span></br>
+                                        <span class="rank3-player">{{ classement[2].name }}</span></br>
+                                        <span class="normal-rank-player">{{ classement[3].name }}</span></br>
+                                        <span class="normal-rank-player">{{ classement[4].name }}</span></br>
+                                        <span class="normal-rank-player">{{ classement[5].name }}</span></br>
+                                        <span class="normal-rank-player">{{ classement[6].name }}</span></br>
+
+                                        {% if fond == true %}
+                                        <span class="normal-rank-player">{{ app.user.name }}</span>
+                                        {% endif %}
+
+                                    </v-col>
+                                    <v-col cols="3 offset-1">
+                                        <span class="rank1-player-money">{{ classement[0].score }}</span></br>
+                                        <span class="rank2-player-money">{{ classement[1].score }}</span></br>
+                                        <span class="rank3-player-money">{{ classement[2].score }}</span></br>
+                                        <span class="normal-rank-player-money">{{ classement[3].score }}</span></br>
+                                        <span class="normal-rank-player-money">{{ classement[4].score }}</span></br>
+                                        <span class="normal-rank-player-money">{{ classement[5].score }}</span></br>
+                                        <span class="normal-rank-player-money">{{ classement[6].score }}</span></br>
+                                        {% if fond == true %}
+                                        <span class="normal-rank-player-money">{{ app.user.score }}</span>
+                                        {% endif %}
+                                    </v-col>
+                                </v-row>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-col>
+                <!-- /BLOC CLASSEMENT -->
+
+                <!-- BLOC INDICATIONS -->
+                <v-col cols="2 offset-1">
+                    <p class="ton-classement">Vous avez gagné {{ win }} parties !</p>
+                    <p class="bien-joue">Bien joué !</p>
+                </v-col>
+
+
+                <!-- /BLOC INDICATIONS -->
+
+            </v-row>
+
+            <div class="text-center">
+                <v-btn type="submit" height="80px" rounded color="#b6246f" dark x-large fixed right bottom>
+                    <span  class="jouer-lien">JOUER !</span>
+                    <img height="30px" src="{{ asset('images/fleche-reverse.svg') }}" alt="Pictogramme flèche, pour commencer à jouer après s'être inscrit">
+                </v-btn>
+            </div>
+
+        </v-content>
+    </v-app>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+    })
+</script>
+{% endblock %}

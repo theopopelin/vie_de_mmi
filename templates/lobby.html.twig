@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vie de MMI est fait pour vous !{% endblock %}
+
+{% block stylesheets %}
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<link href="https:/fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}"/>
+{% endblock %}
+{% block body %}
+  <div id="app" class="app-clr">
+    <v-app>
+      <v-content pa-0 ma-0>
+        <v-container class="ma-0 pa-0" fluid>
+          <v-app-bar
+            color="#111933"
+            flat
+            height="90px"
+            class="ma-0 pa-0">
+
+            <v-row no-gutters justify="space-around" align="center">
+              <v-col cols="12" sm="10" md="8" lg="8">
+                <v-row class="mx-0 my-2" justify-sm="space-between" justify="center" align="center">
+                  <a href="{{ path('app_home') }}"><img height="30px" src="{{ asset('images/connexion.svg')}}" alt="Pictogramme pour se connecter"></a>
+                  <a href="{{ path('app_login') }}"><span class="stl-nav font-barlow">Connexion</span></a>
+                  <span class="stl-nav">&bull;</span>
+                  <a href="{{ path('app_register') }}"><span class="stl-nav font-barlow">Inscription</span></a>
+                  <v-spacer></v-spacer>
+                  <v-row no-gutters align="center" justify="end">
+                    <a href="https://simonmaltaire.fr/promo/" ><img height="15px" src="{{ asset('images/arrow.svg')}}" alt="Cliquez sur cette flèche pour acheter le jeu"><span class="stl-nav font-barlow">Achetez le jeu !</span></a>
+                  </v-row>
+                </v-row>
+              </v-col>
+            </v-row>
+
+          </v-app-bar>
+        </v-container>
+
+        <!-- BLOC CENTRAL -->
+        <v-row no-gutters justify="center">
+          <img class="logotype" height="150px" src="{{ asset('images/gif_fond_transparent.gif')}}" alt="Logotype du jeu">
+        </v-row>
+
+        <v-row no-gutters align="center" justify="space-around">
+            <v-col cols="4">
+              <h2 class="rules-title font-komikazoom">Les Règles du Jeu</h2>
+              <p class="rules-paragraph">
+              Ton objectif au cours d’une partie sera d’avoir plus d’argent que les autres joueurs, afin que, dès qu’un des joueurs à réalisé 4 tours de plateau, le plus riche des joueurs puissent acheter le diplôme MMI.
+              <br/>
+              Les 4 tours de plateau représentent les 4 semestres réalisés en MMI.
+              <br/>
+              Pour progresser dans le jeu, tu seras amené à te déplacer sur un plateau au moyen de lancer de dé. Si celui-ci obtient un 6, tu obtiendras une compétence en plus d’avancer de 6 cases.
+              <br/>
+              Lorsque tu avanceras dans le jeu, tu vas rencontrer et tomber sur différentes cases (acquisitions, histoire vraie, notifications, cours, troc, …) qui vont t’emmener à piocher les cartes correspondantes et pourra te permettre d’altérer ton budget, tes compétences ou certaines de tes actions.
+              <br/>
+              Alors ? Prêt à découvrir la vie étudiante en t’amusant ?</p>
+            </v-col>
+
+            <v-col cols="4">
+              <v-card class="play-card" color="transparent">
+
+                <v-row class="top-card-color flex-nowrap" no-gutters justify="center">
+                    <span class="card-title font-komikazoom">JOUER !</span>
+                </v-row>
+
+
+                <v-row no-gutters class="flex-nowrap" justify="center">
+
+
+                  <v-col cols="6" class="subcard-col">
+                    <v-row no-gutters justify="center" class="pt-6">
+                      <img height="80px" src="{{ asset('images/amis.svg')}}" alt="Pictogramme pour se connecter">
+                    </v-row>
+                    <v-row no-gutters justify="center">
+                      <a href="{{ path('creer_partie') }}"><span class="subtitle-card font-barlow">Créer une partie</span></a>
+                    </v-row>
+                  </v-col>
+
+
+                  <v-col cols="6" class="subcard-col">
+                    <v-row no-gutters justify="center" class="pt-6">
+                      <img height="80px" src="{{ asset('images/ia.svg')}}" alt="Pictogramme pour se connecter">
+                    </v-row>
+                    <v-row no-gutters justify="center">
+                      <a href="{{ path('saisir_code') }}"><span class="subtitle-card font-barlow">Rejoindre une partie</span></a>
+                    </v-row>
+                  </v-col>
+
+                </v-row>
+
+              </v-card>
+            </v-col>
+
+        </v-row>
+        <!-- /BLOC CENTRAL -->
+
+
+        <!-- FOOTER -->
+        <v-footer
+          class="ma-0 pa-0"
+          height="150px"
+          color="#1f154e">
+
+          <v-row no-gutters align="center" justify="space-between">
+
+            <v-col cols="4 offset-1">
+
+              <v-row no-gutters align="center" justify="space-between">
+                <span class="footer-style">Rejoignez-nous sur les réseaux sociaux :</span>
+                <a href="https://www.instagram.com/vie_de_mmi/?hl=fr" target="blank"><img height="30px" width="30px" src="{{ asset('images/instagram_red.svg')}}"/></a>
+                <a href="https://www.facebook.com/Vie-de-MMI-102031908063125/" target="blank"><img height="30px" width="30px" src="{{ asset('images/facebook_red.svg')}}"/></a>
+              </v-row>
+
+
+            </v-col>
+
+            <v-col cols="4 offset-1">
+              <span class="footer-style">CGU / Mentions légales</span>
+            </v-col>
+
+          </v-row>
+        </v-footer>
+        <!-- /FOOTER -->
+
+      </v-content>
+    </v-app>
+  </div>
+{% endblock %}
+{% block javascripts %}
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.11/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+    })
+  </script>
+{% endblock %}

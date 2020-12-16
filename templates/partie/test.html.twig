@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div style="display: flex; width: 1300px; flex-wrap: wrap;">
+    {% for case in cases %}
+        <div style="margin: 20px;">
+        <p>{{ case.position }}\{{ case.effet }}</p><img src="{{ asset(case.image) }}" style="height: 100px; width: 100px;">
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

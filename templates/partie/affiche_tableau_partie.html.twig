@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+
+<v-row no-gutters style="padding-top: 20px;">
+    <v-col cols="3 offset-1">
+        <table>
+            <thead><td></td><td></td></thead>
+<tbody>
+        {% for jouer in partie.jouers %}
+            <tr>
+                <td><span class="rank1-player">{{ jouer.joueur.name }}</span></td>
+                <td><span style="margin-left: 250px;" class="rank1-player">Case {{ jouer.position }}</span></td>
+            </tr>
+
+            <tr>
+                <td><span class="rank1-player">{{ jouer.argent }}€</span></td>
+                <td><span style="margin-left: 250px;" class="rank1-player">Tour {{ jouer.tour }} </span></td>
+            </tr>
+
+        {% endfor %}
+</tbody>
+        </table>
+    </v-col>
+
+
+
+</v-row>
+{% endblock %}
